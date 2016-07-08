@@ -79,7 +79,7 @@ angular.module('angularTestApp')
          * @param items
          */
         function onFulfilled(items) {
-            $scope.ready = false;
+            $scope.ready = true;
             $scope.allTimelineItems = items;
             updateSliderMinMax();
         }
