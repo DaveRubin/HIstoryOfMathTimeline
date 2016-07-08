@@ -13,11 +13,12 @@ angular.module('angularTestApp')
         // AngularJS will instantiate a singleton by calling "new" on this function
 
         function CreateNewTimelineItem(jsonObject) {
-            return new TimelineItem(jsonObject);
+            var timelineItem = new TimelineItem(jsonObject);
+            if (timelineItem.yearStart < Config.minimum_year_toShow) {
+                timelineItem.yearStart = Config.minimum_year_toShow;
+            }
+            return timelineItem;
         }
-
-        this.CreateNewTimelineItem = function (jsonObject) {
-        };
 
         this.GetTimelineItems = function () {
             var deferred = $q.defer();

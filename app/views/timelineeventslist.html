@@ -1,6 +1,6 @@
 <div class="timeline-selection-list">
 
-    <div class="timeline-item" ng-repeat="item in timelineItems | timelineFilter:selectedRangeStart:selectionRangeEnd">
+    <div class="timeline-item" ng-repeat="item in filteredTimelineItmes">
         <p><span class="item-year">{{item.yearName}}</span> -  {{item.name}}</p>
     </div>
 </div>
