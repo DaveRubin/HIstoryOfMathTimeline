@@ -3,21 +3,13 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 @import "svgTimeline";
+@import "timelineItemsList";
+
 .header{
   .navbar{
     border: none;
     margin-bottom: 0px;
   }
-}
-.timeline-item{
-  color:grey;
-  .item-year {
-    font-weight: bold;
-  }
-}
-.timeline-selection-list{
-  height: 400px;
-  overflow: scroll;
 }
 
 

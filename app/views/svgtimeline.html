@@ -4,6 +4,7 @@
      ng-attr-viewBox="0 0 {{svgTimelineWidth}} {{svgTimelineHeight}}">
 
     <line ng-repeat="item in filteredTimelineItmes"
+          ng-class="{'highlight': selectedItem == item}"
           ng-attr-x1="{{getXPos(item)}}"
           ng-attr-x2="{{getXPos(item)}}"
           ng-attr-y1="0"

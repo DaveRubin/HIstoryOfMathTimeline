@@ -13,14 +13,13 @@ angular.module('angularTestApp')
         $scope.ready = false;
         $scope.totalMin = 0;
         $scope.totalMax = 50;
-        $scope.selectedRangeStart = 1;
-        $scope.selectionRangeEnd = 10;
         $scope.filteredTimelineItmes = [];
         $scope.allTimelineItems = [];
+        $scope.selectedItem =  null;
 
         $scope.slider = {
-            minValue: $scope.selectedRangeStart,
-            maxValue: $scope.selectionRangeEnd,
+            minValue: 0,
+            maxValue: 0,
             options: {
                 floor: $scope.totalMin,
                 ceil: $scope.totalMax,
@@ -35,7 +34,7 @@ angular.module('angularTestApp')
         }
 
         /**
-         * iterate through all of timeline items
+         * Iterate through all of timeline items
          * and set min max values to timeline
          */
         function updateSliderMinMax() {
@@ -60,15 +59,17 @@ angular.module('angularTestApp')
                 pushRange: true,
                 draggableRange: true,
                 translate: function(val) {
-                    if (val == Config.minimum_year_toShow) {
+                    if (val <= Config.minimum_year_toShow) {
                         return Config.minimum_year_toShow + " and before";
                     }
                     else return val;
                 }
             };
-            // $scope.totalMin = min;
-            // $scope.totalMax = max;
-            //$scope.slider.update
+            // select all events at start
+            var delta = (max-min)/2;
+            var average = Math.floor((min+max)/2);
+            $scope.slider.maxValue = average+delta/2;
+            $scope.slider.minValue = average-delta/2;
 
         }
 
@@ -83,6 +84,24 @@ angular.module('angularTestApp')
             $scope.allTimelineItems = items;
             updateSliderMinMax();
         }
+
+        /**
+         * When item is clicked on the library the timeline will focus on it
+         * @param itemToFocus
+         */
+        var focusMargin = 200;
+        $scope.focusOnItem = function(itemToFocus) {
+            var newEnd = itemToFocus.yearStart + focusMargin;
+            var newStart = itemToFocus.yearStart - focusMargin;
+            TweenLite.to($scope.slider, 0.5, {minValue:newStart});
+            TweenLite.to($scope.slider, 0.5, {maxValue:newEnd,onUpdate:function(){
+                $scope.$digest();
+            }});
+        };
+
+        $scope.selectItem = function(item) {
+            $scope.selectedItem = item;
+        };
 
         function UpdateFilteredItems() {
 
@@ -113,12 +132,6 @@ angular.module('angularTestApp')
         $scope.$watch('slider.maxValue', function(val) {
             UpdateFilteredItems();
         });
-        // $scope.$on("slideEnded", function () {
-        //     $scope.selectedRangeStart = $scope.slider.minValue;
-        //     $scope.selectionRangeEnd = $scope.slider.maxValue;
-        //     UpdateFilteredItems();
-        //     $scope.$digest();
-        // });
 
         $scope.GetItems = function () {
             return $scope.filteredTimelineItmes;

@@ -1,10 +1,18 @@
 svg-timeline {
-  background-color: green;
+
+  background-color: rgb(255, 255, 255);
   display: block;
   width: 100%;
   height: 200px;
-  line{
-    stroke: rgb(70, 255, 48);
-    stroke-width:2
+
+  line {
+
+    stroke: rgb(172, 175, 255);
+    stroke-width: 2;
+
+    &.highlight {
+      stroke: rgb(255, 125, 123);
+      stroke-width: 4;
+    }
   }
 }

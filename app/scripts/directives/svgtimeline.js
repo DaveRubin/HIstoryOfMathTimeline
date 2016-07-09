@@ -11,18 +11,18 @@ angular.module('angularTestApp')
         return {
             templateUrl: '../../views/svgtimeline.html',
             restrict: 'E',
-            // scope: {
-            //     filteredTimelineItmes: '@filteredTimelineItmes'
-            // },
             link: function postLink(scope, element, attrs) {
-                console.log(scope.filteredTimelineItmes);
+
                 var width = element.width();
+
                 scope.svgTimelineWidth = width;
                 scope.svgTimelineHeight = 200;
 
                 scope.getXPos = function(timelineItem) {
-                    var result = timelineItem.yearStart;
-                    result = (result + 2000)/4000;
+
+                    var result = timelineItem.yearStart - scope.slider.minValue;
+                    var delta= scope.slider.maxValue - scope.slider.minValue;
+                    result /= delta;
                     result = result*width;
                     return result;
                 }

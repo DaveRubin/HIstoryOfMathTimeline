@@ -1,6 +1,9 @@
 <div class="timeline-selection-list">
 
-    <div class="timeline-item" ng-repeat="item in filteredTimelineItmes">
+    <div class="timeline-item" ng-repeat="item in filteredTimelineItmes"
+         ng-click="focusOnItem(item)"
+         ng-mouseover="selectItem(item)"
+         ng-class="{'highlight': selectedItem == item   }">
         <p><span class="item-year">{{item.yearName}}</span> -  {{item.name}}</p>
     </div>
 </div>

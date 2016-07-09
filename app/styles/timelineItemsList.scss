@@ -1,0 +1,17 @@
+
+.timeline-selection-list {
+  height: 330px;
+  overflow: scroll;
+
+  .timeline-item {
+
+    color: grey;
+    .item-year {
+      font-weight: bold;
+    }
+
+    &.highlight {
+      color: red;
+    }
+  }
+}
