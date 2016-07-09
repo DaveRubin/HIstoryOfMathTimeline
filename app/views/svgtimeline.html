@@ -3,6 +3,9 @@
      ng-attr-height="{{svgTimelineHeight}}px"
      ng-attr-viewBox="0 0 {{svgTimelineWidth}} {{svgTimelineHeight}}">
 
+    <text ng-repeat="lengendValue in legenndValue"
+            ng-attr-x="{{lengendValue.pos}}" y="15" >{{lengendValue.value|number:0}}</text>
+
     <text ng-attr-x="{{getYearTextPos(selectedItem)}}"
           y="15"
           fill="red">{{selectedItem.yearStart}}</text>

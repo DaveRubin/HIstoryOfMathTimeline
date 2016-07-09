@@ -50,8 +50,10 @@ angular.module('angularTestApp')
                     max = obj.yearStart;
                 }
             }
+
             console.log( $scope.allTimelineItems.length);
             console.log(min,max);
+
             $scope.slider.options = {
                 floor: min ,
                 ceil: max,
