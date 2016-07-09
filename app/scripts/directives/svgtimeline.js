@@ -18,13 +18,19 @@ angular.module('angularTestApp')
                 scope.svgTimelineWidth = width;
                 scope.svgTimelineHeight = 200;
 
-                scope.getXPos = function(timelineItem) {
+                scope.getXPos = function (timelineItem) {
 
                     var result = timelineItem.yearStart - scope.slider.minValue;
-                    var delta= scope.slider.maxValue - scope.slider.minValue;
+                    var delta = scope.slider.maxValue - scope.slider.minValue;
                     result /= delta;
-                    result = result*width;
+                    result = result * width;
                     return result;
+                };
+
+                scope.getYearTextPos = function (timelineItem) {
+                    var pos = scope.getXPos(timelineItem);
+                    var addition = ((pos)/scope.svgTimelineWidth)*-30;
+                    return pos+ addition;
                 }
             }
         };

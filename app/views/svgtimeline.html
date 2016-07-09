@@ -3,10 +3,16 @@
      ng-attr-height="{{svgTimelineHeight}}px"
      ng-attr-viewBox="0 0 {{svgTimelineWidth}} {{svgTimelineHeight}}">
 
+    <text ng-attr-x="{{getYearTextPos(selectedItem)}}"
+          y="15"
+          fill="red">{{selectedItem.yearStart}}</text>
+
     <line ng-repeat="item in filteredTimelineItmes"
+          ng-mouseover="selectItem(item)"
+          ng-click="focusOnItem(item)"
           ng-class="{'highlight': selectedItem == item}"
           ng-attr-x1="{{getXPos(item)}}"
           ng-attr-x2="{{getXPos(item)}}"
-          ng-attr-y1="0"
+          y1="20"
           ng-attr-y2="{{svgTimelineHeight}}"/>
 </svg>
